@@ -12,6 +12,7 @@ TagManager:
   - BlueBig
   - BlueSmall
   - SamplesInfoPanel
+  - Floor
   layers:
   - Default
   - TransparentFX
