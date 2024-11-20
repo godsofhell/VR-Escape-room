@@ -11,6 +11,7 @@ public class PasswordCheck : MonoBehaviour
    
     public GameObject lift;
     public GameObject tile;
+    public GameObject NPC;
 
     public Collider LiftCollider;
     // Method to check if the password is correct
@@ -42,6 +43,7 @@ public class PasswordCheck : MonoBehaviour
             // Check if the entered password matches the correct password
             if (enteredPassword == correctPassword)
             {
+                NPC.SetActive(true);
                 LiftCollider.isTrigger = true;
                 lift.SetActive(true);
                 tile.SetActive(true);
