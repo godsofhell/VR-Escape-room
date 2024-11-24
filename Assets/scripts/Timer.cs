@@ -25,7 +25,7 @@ public class Timer : MonoBehaviour
         {
             displayText.text = "GAME OVER";
             gameOverBox.SetActive(true);
-            Time.timeScale = 0f;
+            //Time.timeScale = 0f;
         }
         else
         {

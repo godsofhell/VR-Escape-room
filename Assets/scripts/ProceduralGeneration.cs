@@ -5,6 +5,7 @@ using UnityEngine;
 public class ProceduralGeneration : MonoBehaviour
 {
     
+
     public GameObject objectToSpawn;
     // no of objects to spawn
     public int NumberOfObjects = 6;
@@ -12,6 +13,11 @@ public class ProceduralGeneration : MonoBehaviour
     public Vector3 areaSize = new Vector3(20, 0, 20);
 
     private List<GameObject> SpawnedObjects = new List<GameObject>();
+
+    public void Start()
+    {
+        GenerateObject();
+    }
 
     public void GenerateObject()
     {
@@ -24,7 +30,7 @@ public class ProceduralGeneration : MonoBehaviour
         {
             // to spawn objects at random position using Vector 3 
             Vector3 randomPos = new Vector3(Random.Range(-areaSize.x / 2, areaSize.x / 2), Random.Range(-areaSize.y / 2, areaSize.y / 2), Random.Range(-areaSize.z / 2, areaSize.z / 2));
-            GameObject spawned = Instantiate(objectToSpawn, randomPos, Quaternion.identity);
+            GameObject spawned = Instantiate(objectToSpawn, randomPos + new Vector3(-12,0,0), Quaternion.identity);
             // to add gameobjects to the list
             SpawnedObjects.Add(spawned);
         }
