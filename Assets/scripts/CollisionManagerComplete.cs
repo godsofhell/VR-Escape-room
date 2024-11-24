@@ -10,6 +10,7 @@ public class CollisionManagerComplete : MonoBehaviour
     //public GameObject largeRedBox, largeGreenBox, largeBlueBox;
     private int collidedCount;
     private bool hasCollided1, hasCollided2, hasCollided3;
+    public GameObject Digit1;
 
     void CheckAllMatched()
     {
@@ -17,6 +18,7 @@ public class CollisionManagerComplete : MonoBehaviour
         if (hasCollided1 && hasCollided2 && hasCollided3)
         {
             StartCoroutine(Complete());
+            Digit1.SetActive(true);
             
         }
 
