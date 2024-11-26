@@ -608,12 +608,19 @@ namespace Convai.Scripts.Runtime.Core
             convaiNPC.convaiLipSync.SetCharacterEmotions(newEmotions);
         }
 
+        public delegate void TextSentEventHandler(string text);
+        public static event TextSentEventHandler OnTextSent;
         private void ProcessUserQuery(GetResponseResponse result)
         {
             if (result.UserQuery != null)
             {
                 _currentTranscript = _isFinalUserQueryTextBuffer + result.UserQuery.TextData;
                 if (result.UserQuery.IsFinal) _isFinalUserQueryTextBuffer += result.UserQuery.TextData;
+
+                if(!String.IsNullOrEmpty(_isFinalUserQueryTextBuffer)) 
+                {
+                    OnTextSent?.Invoke(_isFinalUserQueryTextBuffer);
+                }
 
                 if (result.UserQuery.EndOfResponse) _isFinalUserQueryTextBuffer = "";
             }

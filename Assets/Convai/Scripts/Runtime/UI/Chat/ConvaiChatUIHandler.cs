@@ -24,6 +24,7 @@ namespace Convai.Scripts.Runtime.UI
             QuestionAnswer,
             Subtitle
         }
+        
 
         [Header("UI Prefabs")] [Tooltip("Prefab for the chat box UI.")]
         public GameObject chatBoxPrefab;
@@ -199,6 +200,9 @@ namespace Convai.Scripts.Runtime.UI
         /// </summary>
         /// <param name="charName">The character's name.</param>
         /// <param name="text">The text to send.</param>
+        /// 
+         public delegate void TextSentEventHandler(string text);
+        public static event TextSentEventHandler OnTextSent;
         public void SendCharacterText(string charName, string text)
         {
             Character character = characters.Find(c => c.characterName == charName);
@@ -209,11 +213,15 @@ namespace Convai.Scripts.Runtime.UI
             }
 
             if (!ConvaiNPCManager.Instance.CheckForNPCToNPCConversation(character.characterGameObject))
-                _currentUIImplementation?.SendCharacterText(charName, text, character.CharacterTextColor);
+            { 
+            _currentUIImplementation?.SendCharacterText(charName, text, character.CharacterTextColor);
+            OnTextSent?.Invoke(text);
+        }
             else
                 ConvaiLogger.DebugLog($"Character {charName} is in conversation with another NPC.", ConvaiLogger.LogCategory.Character);
         }
-
+        //public delegate void TextSentEventHandler(string text);
+        //public static event TextSentEventHandler OnTextSent;
         /// <summary>
         ///     Sends player text to the current UI.
         /// </summary>
@@ -221,6 +229,7 @@ namespace Convai.Scripts.Runtime.UI
         public void SendPlayerText(string text)
         {
             _currentUIImplementation?.SendPlayerText(_hasPlayerData ? _convaiPlayerData.PlayerName : _convaiPlayerData.DefaultPlayerName, text, playerTextColor);
+            //OnTextSent?.Invoke(text);
         }
 
         /// <summary>

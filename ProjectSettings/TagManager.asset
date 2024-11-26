@@ -13,6 +13,11 @@ TagManager:
   - BlueSmall
   - SamplesInfoPanel
   - Floor
+  - SenderTMP
+  - Character
+  - Meteor
+  - art
+  - card
   layers:
   - Default
   - TransparentFX

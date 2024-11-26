@@ -4,7 +4,7 @@ public class Restart : MonoBehaviour
 {
     public Transform player, destination;
     public GameObject playerg;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     public void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))

@@ -14,8 +14,10 @@ public class ProceduralGeneration : MonoBehaviour
 
     private List<GameObject> SpawnedObjects = new List<GameObject>();
 
+    //public ButtonPush push;
     public void Start()
     {
+
         GenerateObject();
     }
 
@@ -33,7 +35,11 @@ public class ProceduralGeneration : MonoBehaviour
             GameObject spawned = Instantiate(objectToSpawn, randomPos + new Vector3(-12,0.15f,0), Quaternion.identity);
             // to add gameobjects to the list
             SpawnedObjects.Add(spawned);
+
         }
+        //push.objects = new List<GameObject>();
+        //push.objects = SpawnedObjects;
+
     }
 
 }
