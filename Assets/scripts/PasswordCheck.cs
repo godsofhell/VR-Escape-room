@@ -29,14 +29,20 @@ public class PasswordCheck : MonoBehaviour
     public TMP_Text textPrefab;
 
     private int password;
-    
+    public int count = 0;
+
+    public GameObject gameOver;
+    public AudioSource aud;
+
     // Method to check if the password is correct
-     void Start()
+    void Start()
     {
+        aud = GetComponent<AudioSource>();
         GeneratePassword();
         DisplayDigits();
         tile.SetActive(false);
         lift.SetActive(false);
+        //gameOver.SetActive(false);
 
         if(enterButton != null )
         {
@@ -74,7 +80,7 @@ public class PasswordCheck : MonoBehaviour
     }
     public void CheckPassword()
     {
-        
+
         if (passwordInputField != null)
         {
 
@@ -92,10 +98,20 @@ public class PasswordCheck : MonoBehaviour
 
                 Debug.Log("password is correct"); // Optional: Change the color of the result text
             }
-        }
-        else
-        {
-            Debug.Log("password is incorrect"); // Optional: Change the color of the result text
+
+            else if (enteredPassword != correctPassword.text)
+            {
+                aud.Play();
+                count++;
+                Debug.Log("password is incorrect");
+                Debug.Log("count is" + count);
+
+                if (count == 3)
+                {
+
+                    //gameOver.SetActive(true);
+                }
+            }
         }
     }
 }

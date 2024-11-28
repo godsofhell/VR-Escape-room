@@ -7,6 +7,7 @@ public class ButtonPush : MonoBehaviour
     public GameObject light1;
     public GameObject light2;
     public GameObject light3;
+    public bool isPushCalled = false;
     //public Restart res;
     //public List<GameObject> objects;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -18,6 +19,7 @@ public class ButtonPush : MonoBehaviour
      }
     public void Push()
     {
+        isPushCalled = true;
         light1.SetActive(true);
         light2.SetActive(true);
         light3.SetActive(true);

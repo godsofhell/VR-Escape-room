@@ -4,7 +4,13 @@ public class Restart2 : MonoBehaviour
 {
     public Transform player, destination;
     public GameObject playerg;
+    MeshRenderer mr = new MeshRenderer();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private void Start()
+    {
+        mr = GetComponent<MeshRenderer>();
+        mr.enabled = false;
+    }
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

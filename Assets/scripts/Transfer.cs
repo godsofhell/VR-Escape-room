@@ -11,6 +11,10 @@ public class Transfer : MonoBehaviour
     [SerializeField] private ConvaiChatUIHandler ConvaiTranscript;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
+    private void Start()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
     public static void Main()
     {
         ConvaiChatUIHandler handler = new ConvaiChatUIHandler();

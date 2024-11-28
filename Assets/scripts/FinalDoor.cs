@@ -10,14 +10,22 @@ public class FinalDoor : MonoBehaviour
     
     void Start()
     {
-        trans = GetComponent<Transfer>();
-        //counter();
+       // trans = gameObject.AddComponent<Transfer>();
+        //if (trans.ChatText.object != null)
+        
+            //Debug.Log("not null");
+           // counter();
+        
+    }
+     void Update()
+    {
+        counter();
     }
     public void counter()
     {
         //trans.ExtractChatText(text);
         //trans.RedirectPlayerMessage();
-        string[] WordsToLook = { "Congratulations", "well done", "awesome", "outstanding" };
+        string[] WordsToLook = { "Congratulations", "well done", "awesome", "outstanding", "excellent" };
     //string[] words = ChatText.Split('');
 
         foreach(string word in WordsToLook)
@@ -25,8 +33,11 @@ public class FinalDoor : MonoBehaviour
            if(trans.ChatText.Contains(word))
             {
                 count++;
-                break;
                 Debug.Log("count is " + count);
+                break;
+                
+               
+                
             }
             if(count>=4)
             {
