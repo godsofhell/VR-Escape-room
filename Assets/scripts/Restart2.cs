@@ -4,6 +4,7 @@ public class Restart2 : MonoBehaviour
 {
     public Transform player, destination;
     public GameObject playerg;
+    //public GameObject tile;
     MeshRenderer mr = new MeshRenderer();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
@@ -19,7 +20,7 @@ public class Restart2 : MonoBehaviour
             player.position = destination.position;
             Debug.Log("teleport");
             playerg.SetActive(true);
-            Destroy(gameObject,1f);
+            //tile.SetActive(false);
         }
     }
 }

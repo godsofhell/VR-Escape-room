@@ -9,6 +9,7 @@ public class CardOpen : MonoBehaviour
     private void Start()
     {
         audio = GetComponent<AudioSource>();
+        Digit2.SetActive(false);
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void OnCollisionEnter(Collision collision)

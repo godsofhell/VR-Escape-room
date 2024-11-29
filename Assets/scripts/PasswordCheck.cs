@@ -109,7 +109,7 @@ public class PasswordCheck : MonoBehaviour
                 if (count == 3)
                 {
 
-                    //gameOver.SetActive(true);
+                    gameOver.SetActive(true);
                 }
             }
         }

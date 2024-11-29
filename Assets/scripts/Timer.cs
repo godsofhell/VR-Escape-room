@@ -9,6 +9,7 @@ public class Timer : MonoBehaviour
     [SerializeField] private TMP_Text displayText;
     [SerializeField] private GameObject gameOverBox;
     public PasswordCheck Check;
+    public ParticleController time;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,11 +23,11 @@ public class Timer : MonoBehaviour
         displayTime = Mathf.Round(currentTime);
         
 
-        if(currentTime <= 0 || Check.count >=3)
+        if(currentTime <= 0 || Check.count >=3 || time.timer < 0)
         {
             displayText.text = "GAME OVER";
             gameOverBox.SetActive(true);
-            //Time.timeScale = 0f;
+            Time.timeScale = 0f;
         }
         else
         {
