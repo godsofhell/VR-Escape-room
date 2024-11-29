@@ -11,11 +11,14 @@ public class ParticleController : MonoBehaviour
     private float targetPos = -6.1f;
     private bool IsTimeRunning = false;
     public AudioSource trip;
+    private MeshRenderer invisible;
     // Update is called once per frame
 
     private void Start()
     {
         trip = GetComponent<AudioSource>(); 
+        invisible = GetComponent<MeshRenderer>();
+        invisible.enabled = false;
     }
     public void OnTriggerEnter(Collider other)
     {
