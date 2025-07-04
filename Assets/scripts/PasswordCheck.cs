@@ -5,20 +5,44 @@ using UnityEngine.UI;
 public class PasswordCheck : MonoBehaviour
 {
     public TMP_InputField passwordInputField; // Reference to the TMP InputField
-    public string correctPassword = "IRIS"; // The correct password
+    public TMP_Text correctPassword;
+    
+    // The correct password
     // to asssign the VR button in Inspector
     public Button enterButton;
    
     public GameObject lift;
     public GameObject tile;
+    public GameObject NPC;
 
     public Collider LiftCollider;
+
+    
+
+    public TMP_Text digit1;
+    public TMP_Text digit2;
+    public TMP_Text digit3;
+
+    private int[] passwordDigits;
+    public Transform[] digitLocations;
+
+    public TMP_Text textPrefab;
+
+    private int password;
+    public int count = 0;
+
+    public GameObject gameOver;
+    public AudioSource aud;
+
     // Method to check if the password is correct
-     void Start()
+    void Start()
     {
-        
+        aud = GetComponent<AudioSource>();
+        GeneratePassword();
+        DisplayDigits();
         tile.SetActive(false);
         lift.SetActive(false);
+        //gameOver.SetActive(false);
 
         if(enterButton != null )
         {
@@ -30,8 +54,33 @@ public class PasswordCheck : MonoBehaviour
         }
 
     }
+    public void GeneratePassword()
+    {
+        int password = Random.Range(100, 999);
+        correctPassword.text = password.ToString();
+        Debug.Log("generated password" + password);
+
+        passwordDigits = new int[3];
+        passwordDigits[0] = password / 100;
+        passwordDigits[1] = (password / 10) % 10;
+        passwordDigits[2] = password % 10;
+        
+    }
+    public void DisplayDigits()
+    {
+        digit1.text = passwordDigits[0].ToString();
+        digit2.text = passwordDigits[1].ToString();
+        digit3.text = passwordDigits[2].ToString();
+
+        for(int i=0;i<passwordDigits.Length; i++)
+        {
+            TMP_Text digitText = Instantiate(textPrefab, digitLocations[i].position, Quaternion.identity);
+            digitText.text = passwordDigits[i].ToString();
+        }
+    }
     public void CheckPassword()
     {
+
         if (passwordInputField != null)
         {
 
@@ -40,18 +89,29 @@ public class PasswordCheck : MonoBehaviour
             string enteredPassword = passwordInputField.text;
 
             // Check if the entered password matches the correct password
-            if (enteredPassword == correctPassword)
+            if (enteredPassword == correctPassword.text)
             {
+                NPC.SetActive(true);
                 LiftCollider.isTrigger = true;
                 lift.SetActive(true);
                 tile.SetActive(true);
 
                 Debug.Log("password is correct"); // Optional: Change the color of the result text
             }
-        }
-        else
-        {
-            Debug.Log("password is incorrect"); // Optional: Change the color of the result text
+
+            else if (enteredPassword != correctPassword.text)
+            {
+                aud.Play();
+                count++;
+                Debug.Log("password is incorrect");
+                Debug.Log("count is" + count);
+
+                if (count == 3)
+                {
+
+                    gameOver.SetActive(true);
+                }
+            }
         }
     }
 }
